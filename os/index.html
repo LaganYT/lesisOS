@@ -23,6 +23,7 @@
 <!--Apps-->
 <a id="myBtn"><img src="https://cdn.bookboard.ga/assets/images/BookBoard.png" width="75" height="75"></a>
 <a id="myBtn2"><img src="https://laganyt.github.io/LTunes/assets/Logo.png" width="75" height="75"></a>
+<a id="myBtn3"><img src="https://assets.savvas.com//images/slc01/favicon.ico" width="75" height="75"></a>
 <!--Popups-->
 <div id="myModal" class="modal">
 
@@ -40,6 +41,16 @@
   <div class="modal-content2">
     <span class="close2">&times;</span>
     <iframe src="https://www.ltunes.gq/" style="border:0px #ffffff none;" name="Ltunes" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+  </div>
+
+</div>
+<!--Popup 3-->
+<div id="myModal3" class="modal3">
+
+  <!-- Modal content -->
+  <div class="modal-content3">
+    <span class="close3">&times;</span>
+    <iframe src="https://savvasrealize.com" style="border:0px #ffffff none;" name="Savvas" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
   </div>
 
 </div>
@@ -144,6 +155,56 @@
     cursor: pointer;
   }
 </style>
+<style>
+  /* The Modal (background) */
+  .modal3 {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 150%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content3 {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 100%;
+    /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close3 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close3:hover,
+  .close3:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
 <script>
   // Get the modal
   var modal = document.getElementById("myModal");
@@ -185,6 +246,28 @@
   window.onclick = function(event) {
     if (event.target == modal2) {
       modal2.style.display = "none";
+    }
+  }
+</script>
+<script>
+  // Get the modal
+  var modal3 = document.getElementById("myModal3");
+  // Get the button that opens the modal
+  var btn3 = document.getElementById("myBtn3");
+  // Get the <span> element that closes the modal
+  var span3 = document.getElementsByClassName("close3")[0];
+  // When the user clicks on the button, open the modal
+  btn3.onclick = function() {
+    modal3.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span3.onclick = function() {
+    modal3.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal3) {
+      modal3.style.display = "none";
     }
   }
 </script>
