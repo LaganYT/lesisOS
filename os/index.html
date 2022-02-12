@@ -601,3 +601,34 @@
     }
   }
 </script>
+<!--Exit Window-->
+<script>
+  // Execute a function when the user releases a key on the keyboard
+  addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 27) {
+      // Cancel the default action, if needed
+      //1
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+      //2
+      var modal2 = document.getElementById("myModal2");
+      modal2.style.display = "none";
+      //3
+      var modal3 = document.getElementById("myModal3");
+      modal3.style.display = "none";
+      //4
+      var modal4 = document.getElementById("myModal4");
+      modal4.style.display = "none";
+      //5
+      var modal5 = document.getElementById("myModal5");
+      modal5.style.display = "none";
+      //6
+      var modal6 = document.getElementById("myModal6");
+      modal6.style.display = "none";
+      //7
+      var modal7 = document.getElementById("myModal7");
+      modal7.style.display = "none";
+    }
+  });
+</script>
