@@ -22,6 +22,7 @@
 <a id="myBtn5"><img src="https://www.editpad.org/imgs/logo128.png" width="75" height="75"></a>
 <a id="myBtn6"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Circle-icons-calculator.svg/1200px-Circle-icons-calculator.svg.png" width="75" height="75"></a>
 <a id="myBtn7"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvS4NbY1nERPsiCnnaifCbV27ZXoNHOhQOIw&usqp=CAU" width="75" height="75"></a>
+<a id="myBtn8"><img src="https://iconarchive.com/download/i94287/bokehlicia/captiva/browser-web.ico" width="75" height="75"></a>
 <!--Popups-->
 <div id="myModal" class="modal">
 
@@ -89,6 +90,16 @@
   <div class="modal-content7">
     <span class="close7">&times;</span>
     <iframe src="https://jspaint.app" style="border:0px #ffffff none;" name="Paint" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+  </div>
+
+</div>
+<!--Popup 8-->
+<div id="myModal8" class="modal8">
+
+  <!-- Modal content -->
+  <div class="modal-content8">
+    <span class="close8">&times;</span>
+    <iframe src="https://bing.com" style="border:0px #ffffff none;" name="Search/Web Browser" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
   </div>
 
 </div>
@@ -447,6 +458,56 @@
     cursor: pointer;
   }
 </style>
+<style>
+  /* The Modal (background) */
+  .modal8 {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 150%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content8 {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 100%;
+    /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close8 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close8:hover,
+  .close8:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
 <script>
   // Get the modal
   var modal = document.getElementById("myModal");
@@ -601,6 +662,28 @@
     }
   }
 </script>
+<script>
+  // Get the modal
+  var modal8 = document.getElementById("myModal8");
+  // Get the button that opens the modal
+  var btn8 = document.getElementById("myBtn8");
+  // Get the <span> element that closes the modal
+  var span8 = document.getElementsByClassName("close8")[0];
+  // When the user clicks on the button, open the modal
+  btn8.onclick = function() {
+    modal8.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span8.onclick = function() {
+    modal8.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal8) {
+      modal8.style.display = "none";
+    }
+  }
+</script>
 <!--Exit Window-->
 <script>
   // Execute a function when the user releases a key on the keyboard
@@ -629,6 +712,9 @@
       //7
       var modal7 = document.getElementById("myModal7");
       modal7.style.display = "none";
+      //8
+      var modal8 = document.getElementById("myModal8");
+      modal8.style.display = "none";
     }
   });
 </script>
