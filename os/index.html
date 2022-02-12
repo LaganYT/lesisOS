@@ -22,6 +22,7 @@
 <a id="myBtn4"><img src="https://www.renaissance.com/wp-content/uploads/2018/07/R-Color-favicon-1.png" width="75" height="75"></a>
 <a id="myBtn5"><img src="https://www.editpad.org/imgs/logo128.png" width="75" height="75"></a>
 <a id="myBtn6"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Circle-icons-calculator.svg/1200px-Circle-icons-calculator.svg.png" width="75" height="75"></a>
+<a id="myBtn7"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvS4NbY1nERPsiCnnaifCbV27ZXoNHOhQOIw&usqp=CAU" width="75" height="75"></a>
 <!--Popups-->
 <div id="myModal" class="modal">
 
@@ -82,7 +83,16 @@
   </div>
 
 </div>
+<!--Popup 7-->
+<div id="myModal7" class="modal7">
 
+  <!-- Modal content -->
+  <div class="modal-content7">
+    <span class="close7">&times;</span>
+    <iframe src="/os/paint" style="border:0px #ffffff none;" name="Paint" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
+  </div>
+
+</div>
 <!--App style and script-->
 <style>
   html {
@@ -388,6 +398,56 @@
     cursor: pointer;
   }
 </style>
+<style>
+  /* The Modal (background) */
+  .modal7 {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 150%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content7 {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 100%;
+    /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close7 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close7:hover,
+  .close7:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
 <script>
   // Get the modal
   var modal = document.getElementById("myModal");
@@ -504,7 +564,7 @@
   // Get the button that opens the modal
   var btn6 = document.getElementById("myBtn6");
   // Get the <span> element that closes the modal
-  var span6 = document.getElementsByClassName("close5")[0];
+  var span6 = document.getElementsByClassName("close6")[0];
   // When the user clicks on the button, open the modal
   btn6.onclick = function() {
     modal6.style.display = "block";
@@ -517,6 +577,28 @@
   window.onclick = function(event) {
     if (event.target == modal6) {
       modal6.style.display = "none";
+    }
+  }
+</script>
+<script>
+  // Get the modal
+  var modal7 = document.getElementById("myModal7");
+  // Get the button that opens the modal
+  var btn7 = document.getElementById("myBtn7");
+  // Get the <span> element that closes the modal
+  var span7 = document.getElementsByClassName("close7")[0];
+  // When the user clicks on the button, open the modal
+  btn7.onclick = function() {
+    modal7.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span7.onclick = function() {
+    modal7.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal7) {
+      modal7.style.display = "none";
     }
   }
 </script>
