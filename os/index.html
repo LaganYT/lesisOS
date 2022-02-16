@@ -27,6 +27,7 @@
     <a id="myBtn7"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvS4NbY1nERPsiCnnaifCbV27ZXoNHOhQOIw&usqp=CAU" width=10%" height="10%"></a>
     <a id="myBtn8"><img src="https://iconarchive.com/download/i94287/bokehlicia/captiva/browser-web.ico" width=10%" height="10%"></a>
     <a id="myBtn9"><img src="https://i.ibb.co/10yPmDd/image-removebg-preview-10.png" width=10%" height="10%"></a>
+    <a id="myBtn10"><img src="https://i.ibb.co/TqBWnrt/image-removebg-preview.png" width=10%" height="10%"></a>
   </div>
 </center>
 <!--Popups-->
@@ -118,6 +119,16 @@
     <span class="close9">-</span>
     <iframe src="/os/store" style="border:0px #ffffff none;" name="App Store" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" height="100%" width="100%" allowfullscreen></iframe>
   </div>
+
+</div>
+      <!--Popup 9-->
+<div id="myModal10" class="modal10">
+
+  <!-- Modal content -->
+  <div class="modal-content10">
+    <span class="close10">-</span>
+Coming Soon
+      </div>
 
 </div>
 <!--App style and script-->
@@ -530,6 +541,52 @@
     background-color: red;
   }
 </style>
+      
+<style>
+  /* The Modal (background) */
+  .modal10 {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    width: 100%;
+    /* Full width */
+    height: 150%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content10 {
+    background-color: #fefefe;
+    width: 100%;
+    height: 100%;
+    /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close10 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close10:hover,
+  .close10:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: red;
+  }
+</style>
 <script>
   // Get the modal
   var modal = document.getElementById("myModal");
@@ -728,6 +785,28 @@
     }
   }
 </script>
+      <script>
+  // Get the modal
+  var modal10 = document.getElementById("myModal10");
+  // Get the button that opens the modal
+  var btn10 = document.getElementById("myBtn10");
+  // Get the <span> element that closes the modal
+  var span10 = document.getElementsByClassName("close10")[0];
+  // When the user clicks on the button, open the modal
+  btn10.onclick = function() {
+    modal10.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span10.onclick = function() {
+    modal10.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal10) {
+      modal10.style.display = "none";
+    }
+  }
+</script>
 <!--Exit Window-->
 <script>
   // Execute a function when the user releases a key on the keyboard
@@ -762,6 +841,10 @@
       //9
       var modal9 = document.getElementById("myModal9");
       modal9.style.display = "none";
+    }
+            //10
+      var modal10 = document.getElementById("myModal10");
+      modal10.style.display = "none";
     }
   });
       document.addEventListener('contextmenu', event => event.preventDefault());
