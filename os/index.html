@@ -121,20 +121,30 @@
   </div>
 
 </div>
-      <!--Popup 9-->
+<!--Popup 9-->
 <div id="myModal10" class="modal10">
 
   <!-- Modal content -->
   <div class="modal-content10">
     <span class="close10">-</span>
-Coming Soon
-      </div>
+    <h2>Wallpaper</h2>
+    <h5>
+      <a href="#" onclick="setWallpaper()">Test</a>
+    </h5>
+    More Coming Soon!
+  </div>
 
 </div>
+<!--Settings style and scripts-->
+<script>
+  function setWallpaper() {
+    document.body.style.backgroundImage = "url('https://i.ibb.co/0r6YssK/download.jpg')";
+  }
+</script>
 <!--App style and script-->
 <style>
   html {
-    background: url("https://wallpaperaccess.com/full/7315.jpg")
+    background: url(" https://wallpaperaccess.com/full/7315.jpg")
   }
 
   /* The Modal (background) */
@@ -541,7 +551,7 @@ Coming Soon
     background-color: red;
   }
 </style>
-      
+
 <style>
   /* The Modal (background) */
   .modal10 {
@@ -785,7 +795,7 @@ Coming Soon
     }
   }
 </script>
-      <script>
+<script>
   // Get the modal
   var modal10 = document.getElementById("myModal10");
   // Get the button that opens the modal
@@ -842,10 +852,10 @@ Coming Soon
       var modal9 = document.getElementById("myModal9");
       modal9.style.display = "none";
     }
-            //10
-      var modal10 = document.getElementById("myModal10");
-      modal10.style.display = "none";
-    }
+    //10
+    var modal10 = document.getElementById("myModal10");
+    modal10.style.display = "none";
+  }
   });
-      document.addEventListener('contextmenu', event => event.preventDefault());
+  document.addEventListener('contextmenu', event => event.preventDefault());
 </script>
