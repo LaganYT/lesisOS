@@ -1,272 +1,160 @@
-<div class="calculator">
-  <div class="input" id="input"></div>
-  <div class="buttons">
-    <div class="operators">
-      <div>+</div>
-      <div>-</div>
-      <div>&times;</div>
-      <div>&divide;</div>
-    </div>
-    <div class="leftPanel">
-      <div class="numbers">
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>
-      </div>
-      <div class="numbers">
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-      </div>
-      <div class="numbers">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-      </div>
-      <div class="numbers">
-        <div>0</div>
-        <div>.</div>
-        <div id="clear">C</div>
-      </div>
-    </div>
-    <div class="equal" id="result">=</div>
-  </div>
-</div>
-<style>body {
-  width: 500px;
-  margin: 4% auto;
-  font-family: 'Source Sans Pro', sans-serif;
-  letter-spacing: 5px;
-  font-size: 1.8rem;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+
+<!DOCTYPE html>
+<html lang='en' class=''>
+
+<head>
+
+  <meta charset='UTF-8'>
+  
+  <style class="INLINE_PEN_STYLESHEET_ID">
+    html,body{
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	font-family: 'Noto Serif', serif;
+}
+*{box-sizing:border-box;font: bold 14px Arial, sans-serif;}
+
+h1{
+	font-size:40px;
+	text-align:center;
+	margin-bottom:110px;
+	background:#673AB7;
+	color:white;
+	margin-top:0;
+	padding:20px;
+	
 }
 
-.calculator {
-  padding: 20px;
-  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  border-radius: 1px;
+.main-div{
+	 width:290px;
+	 margin:0 auto;
+	 background:#3F475B;
+	 height:310px;
+	 box-shadow:2px 2px 2px gray;
+	 padding:15px;
+	 border-bottom:5px solid #ED586C;
+     border-radius:4px;	
+position:relative;	 
 }
 
-.input {
-  border: 1px solid #ddd;
-  border-radius: 1px;
-  height: 60px;
-  padding-right: 15px;
-  padding-top: 10px;
-  text-align: right;
-  margin-right: 6px;
-  font-size: 2.5rem;
-  overflow-x: auto;
-  transition: all .2s ease-in-out;
+.screen-div,.number-div{
+	  padding:0;
+	  margin:0;
 }
 
-.input:hover {
-  border: 1px solid #bbb;
-  -webkit-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+.screen{
+	list-style:none;
+	color:white;
+	height:45px;
+	width:58px;
+  margin-left:8px;
+	border-radius:4px;
+	border-top:4px solid #828A9B;
+	text-align:center;
+	font-weight:bold;
+	font-family: 'Ubuntu', sans-serif;
+	margin-bottom:8px;
+  width:182px;
+	background:#828A9B;
+   border-top:4px solid #ED586C;
+  overflow:hidden;
 }
 
-.buttons {}
-
-.operators {}
-
-.operators div {
-  display: inline-block;
-  border: 1px solid #bbb;
-  border-radius: 1px;
-  width: 80px;
-  text-align: center;
-  padding: 10px;
-  margin: 20px 4px 10px 0;
-  cursor: pointer;
-  background-color: #ddd;
-  transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+.clear{
+    width:60px;
+	background:#7B8D8E;
+	padding:10px 17px;
+	position:absolute;
+	border-radius:3px;
+	left:215px;
+	top:18px;
+	color:white;
+	cursor:pointer;
+	text-align:center;
 }
-
-.operators div:hover {
-  background-color: #ddd;
-  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  border-color: #aaa;
-}
-
-.operators div:active {
-  font-weight: bold;
-}
-
-.leftPanel {
-  display: inline-block;
-}
-
-.numbers div {
-  display: inline-block;
-  border: 1px solid #ddd;
-  border-radius: 1px;
-  width: 80px;
-  text-align: center;
-  padding: 10px;
-  margin: 10px 4px 10px 0;
-  cursor: pointer;
-  background-color: #f9f9f9;
-  transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
-}
-
-.numbers div:hover {
-  background-color: #f1f1f1;
-  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  border-color: #bbb;
-}
-
-.numbers div:active {
-  font-weight: bold;
-}
-
-div.equal {
-  display: inline-block;
-  border: 1px solid #3079ED;
-  border-radius: 1px;
-  width: 17%;
-  text-align: center;
-  padding: 127px 10px;
-  margin: 10px 6px 10px 0;
-  vertical-align: top;
-  cursor: pointer;
-  color: #FFF;
-  background-color: #4d90fe;
-  transition: all .2s ease-in-out;
-}
-
-div.equal:hover {
-  background-color: #307CF9;
-  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-  border-color: #1857BB;
-}
-
-div.equal:active {
-  font-weight: bold;
-  }</style>
-<script>"use strict";
-
-var input = document.getElementById('input'), // input/output button
-  number = document.querySelectorAll('.numbers div'), // number buttons
-  operator = document.querySelectorAll('.operators div'), // operator buttons
-  result = document.getElementById('result'), // equal button
-  clear = document.getElementById('clear'), // clear button
-  resultDisplayed = false; // flag to keep an eye on what output is displayed
-
-// adding click handlers to number buttons
-for (var i = 0; i < number.length; i++) {
-  number[i].addEventListener("click", function(e) {
-
-    // storing current input string and its last character in variables - used later
-    var currentString = input.innerHTML;
-    var lastChar = currentString[currentString.length - 1];
-
-    // if result is not diplayed, just keep adding
-    if (resultDisplayed === false) {
-      input.innerHTML += e.target.innerHTML;
-    } else if (resultDisplayed === true && lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
-      // if result is currently displayed and user pressed an operator
-      // we need to keep on adding to the string for next operation
-      resultDisplayed = false;
-      input.innerHTML += e.target.innerHTML;
-    } else {
-      // if result is currently displayed and user pressed a number
-      // we need clear the input string and add the new input to start the new opration
-      resultDisplayed = false;
-      input.innerHTML = "";
-      input.innerHTML += e.target.innerHTML;
-    }
-
-  });
-}
-
-// adding click handlers to number buttons
-for (var i = 0; i < operator.length; i++) {
-  operator[i].addEventListener("click", function(e) {
-
-    // storing current input string and its last character in variables - used later
-    var currentString = input.innerHTML;
-    var lastChar = currentString[currentString.length - 1];
-
-    // if last character entered is an operator, replace it with the currently pressed one
-    if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
-      var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
-      input.innerHTML = newString;
-    } else if (currentString.length == 0) {
-      // if first key pressed is an opearator, don't do anything
-      console.log("enter a number first");
-    } else {
-      // else just add the operator pressed to the input
-      input.innerHTML += e.target.innerHTML;
-    }
-
-  });
-}
-
-// on click of 'equal' button
-result.addEventListener("click", function() {
-
-  // this is the string that we will be processing eg. -10+26+33-56*34/23
-  var inputString = input.innerHTML;
-
-  // forming an array of numbers. eg for above string it will be: numbers = ["10", "26", "33", "56", "34", "23"]
-  var numbers = inputString.split(/\+|\-|\×|\÷/g);
-
-  // forming an array of operators. for above string it will be: operators = ["+", "+", "-", "*", "/"]
-  // first we replace all the numbers and dot with empty string and then split
-  var operators = inputString.replace(/[0-9]|\./g, "").split("");
-
-  console.log(inputString);
-  console.log(operators);
-  console.log(numbers);
-  console.log("----------------------------");
-
-  // now we are looping through the array and doing one operation at a time.
-  // first divide, then multiply, then subtraction and then addition
-  // as we move we are alterning the original numbers and operators array
-  // the final element remaining in the array will be the output
-
-  var divide = operators.indexOf("÷");
-  while (divide != -1) {
-    numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
-    operators.splice(divide, 1);
-    divide = operators.indexOf("÷");
+.screen{
+  p{
+    margin: 0;
   }
+}
 
-  var multiply = operators.indexOf("×");
-  while (multiply != -1) {
-    numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
-    operators.splice(multiply, 1);
-    multiply = operators.indexOf("×");
-  }
 
-  var subtract = operators.indexOf("-");
-  while (subtract != -1) {
-    numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
-    operators.splice(subtract, 1);
-    subtract = operators.indexOf("-");
-  }
+.number-div li{
+	 list-style:none;
+	 float:left;
+     width:52px;
+    background:white;
+	margin:9px 5px;
+	padding:10px;
+	border-bottom:4px solid #828A9B;
+	border-radius:5px;
+	color:#888888;
+	text-align:center;
+	transition:.2s;
+	cursor:pointer;
+}
 
-  var add = operators.indexOf("+");
-  while (add != -1) {
-    // using parseFloat is necessary, otherwise it will result in string concatenation :)
-    numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
-    operators.splice(add, 1);
-    add = operators.indexOf("+");
-  }
+.number-div li:hover{
+	background: #44B3C2;
+	border-bottom: 4px solid #336699;
+	color: white;
+}
 
-  input.innerHTML = numbers[0]; // displaying the output
+#equals{
+	background:#F43341;
+	color:white;
+}
 
-  resultDisplayed = true; // turning flag if result is displayed
-});
+#equals:hover{
+	background: #FE5E6A;
+	border-bottom: 4px solid #B3232E;
+	color: white;
+}
 
-// clearing the input on press of clear
-clear.addEventListener("click", function() {
-  input.innerHTML = "";
-})</script>
+  </style>
+
+  
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeConsoleRunner-d0f3648046d2aaca07bd0037b9e061a26c74a8a999b75672ad6a638cca641472.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-4793b73c6332f7f14a9b6bba5d5e62748e9d1bd0b5c52d7af6376f3d1c625d7e.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRuntimeErrors-4f205f2c14e769b448bcf477de2938c681660d5038bc464e3700256713ebe261.js"></script>
+</head>
+
+<body>
+  		  <div class="main-div">
+		           
+				  
+				            <div class="screen" id="screen"><p></p></div>
+							<div class="clear" id="clear">C</div>
+					
+				
+				               <ul class="number-div">
+							             <li>1</li>
+										 <li>2</li>
+										 <li>3</li>
+									     <li>+</li>
+										 <li>4</li>
+										 <li>5</li>
+										 <li>6</li>
+									     <li>x</li>
+										 <li>7</li>
+										 <li>8</li>
+										 <li>9</li>
+									     <li>-</li>
+										 <li>0</li>
+										 <li>.</li>
+										 <li id="equals">=</li>
+									     <li>÷</li>
+										 
+										 
+							   </ul>
+				   
+		  </div>
+		  
+  
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+  <script  src="https://cdpn.io/cpe/boomboom/pen.js?key=pen.js-43f30060-ab24-d38f-d3a2-481e52470e7c" crossorigin></script>
+</body>
+
+</html>
