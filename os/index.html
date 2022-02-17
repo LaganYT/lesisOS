@@ -888,7 +888,13 @@ window.onclick = function(event) {
   addEventListener("keyup", function(event) {
     // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 27) {
+      closeWIndow()
+    }
+        if (event.keyCode === 88) {
+      closeWIndow()
+    }
       // Cancel the default action, if needed
+            function closeWIndow() {
       //1
       var modal = document.getElementById("myModal");
       modal.style.display = "none";
@@ -916,10 +922,10 @@ window.onclick = function(event) {
       //9
       var modal9 = document.getElementById("myModal9");
       modal9.style.display = "none";
-    }
     //10
     var modal10 = document.getElementById("myModal10");
     modal10.style.display = "none";
+            }
   }
   });
   document.addEventListener('contextmenu', event => event.preventDefault());
