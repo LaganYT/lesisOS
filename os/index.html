@@ -888,13 +888,14 @@ window.onclick = function(event) {
   addEventListener("keyup", function(event) {
     // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 27) {
-      closeWIndow()
+      closeWindow()
     }
         if (event.keyCode === 88) {
-      closeWIndow()
+      closeWindow()
     }
+  });
       // Cancel the default action, if needed
-            function closeWIndow() {
+            function closeWindow() {
       //1
       var modal = document.getElementById("myModal");
       modal.style.display = "none";
@@ -928,5 +929,4 @@ window.onclick = function(event) {
             }
   }
   });
-  document.addEventListener('contextmenu', event => event.preventDefault());
 </script>
