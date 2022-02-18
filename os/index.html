@@ -210,7 +210,9 @@
     function setWallpaper3() {
     document.body.style.backgroundImage = "url('https://cdna.artstation.com/p/assets/images/images/024/538/828/original/pixel-jeff-clipc-s.gif?1582740521')";
   }
-  
+    $(document).ready(function () {
+        setWallpaper1();
+    });  
   /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function wallpaperFunction() {
@@ -262,9 +264,9 @@ window.onclick = function(event) {
   .show {display:block;}</style>
 <!--App style and script-->
 <style>
-  html {
+ /* html {
     background: url(" https://wallpaperaccess.com/full/7315.jpg")
-  }
+  }*/
 
   /* The Modal (background) */
   .modal {
