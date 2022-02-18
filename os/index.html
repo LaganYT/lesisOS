@@ -142,6 +142,7 @@
       <a href="#" onclick="setWallpaper1()"><img src="https://wallpaperaccess.com/full/7315.jpg" width="20%" height="25%"></a>
        <a href="#" onclick="setWallpaper2()"><img src="https://www.lifewire.com/thmb/g2jva4iFBaG5vBXNpzEs8wEVYJY=/1920x1080/filters:no_upscale():max_bytes(150000):strip_icc()/passage_wallpaper_by_trenchmaker-d4pp3zd-5919d0673df78cf5fa42884c.jpg" width="20%" height="25%"></a>
       <a href="#" onclick="setWallpaper3()"><img src="https://cdna.artstation.com/p/assets/images/images/024/538/828/original/pixel-jeff-clipc-s.gif?1582740521" width="20%" height="25%"></a>
+          Upload your own wallpaper: <input type="file" name="" id="file" value="Click">
           </h5></div>
   </div>
     More Coming Soon!
@@ -169,6 +170,37 @@
 
 </div>
 <!--Settings style and scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+      $(document).ready(function(){
+             $("#file").change(function(){
+                   var length=this.files.length;
+                        if(!length){
+                          return false;
+                         }
+                        changeBackground(this);
+                });
+       });
+     
+      // Creating the function
+      function changeBackground(img){
+            var file = img.files[0];
+            var imagefile = file.type;
+            var match= ["image/jpeg","image/png","image/jpg"];
+                  if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
+                        alert("Invalid File Extension");
+                  }else{
+                        var reader = new FileReader();
+                        reader.onload = imageIsLoaded;
+                        reader.readAsDataURL(img.files[0]);
+                  }
+            function imageIsLoaded(e) {
+                  $('body').css({ 'background-image': "url(" + e.target.result + ")" });
+           
+                  }     
+            }
+</script>
+</head>
 <script>
   function setWallpaper1() {
     document.body.style.backgroundImage = "url('https://wallpaperaccess.com/full/7315.jpg')";
