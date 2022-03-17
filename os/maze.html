@@ -1,0 +1,318 @@
+<form name="mazedetails" action="javascript:letsGo()">
+
+  <label for="width">Width:</label> <input type="number" name="width" id="width" value="40" size="5" min="2" max="40">
+
+  <label for="height">Height:</label> <input type="number" name="height" id="height" value="24" size="5" min="2" max="40">
+
+  <label for="boxsize">Box Size:</label> <input type="number" name="boxsize" id="boxsize" value="15" size="5" min="6" max="50">
+
+  <input type="submit" value="Generate a new maze">
+
+  <button type="button" onclick="javascript:solveAnimation()">Solve Animation</button>
+</form>
+
+<canvas id="mymaze" width="1200" height="1200"></canvas>
+<style>form {
+  padding: 20px;
+}
+
+label {
+  padding: 5px;
+}
+</style>
+<script>let maze, interval;
+
+class Square {
+  constructor() {
+    this.south = true;
+    this.east = true;
+    this.accessible = false;
+    this.color = "white";
+  }
+  openSouth() {
+    this.south = false;
+  }
+  openEast() {
+    this.east = false;
+  }
+  markAccessible() {
+    this.accessible = true;
+  }
+  setColor(color) {
+    this.color = color;
+  }
+}
+
+class Maze {
+  constructor(height, width, pixels) {
+    this.height = height;
+    this.width = width;
+    this.pixels = pixels;
+    this.starth = -1;
+    this.endh = -1;
+    this.squares = new Array(height);
+    for (let h = 0; h < height; h++) {
+      this.squares[h] = new Array(width);
+      for (let w = 0; w < width; w++) {
+        this.squares[h][w] = new Square();
+      }
+    }
+  }
+  getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+  resetAccessibility() {
+    for (let h = 1; h < this.height; h++) {
+      for (let w = 1; w < this.width; w++) {
+        this.squares[h][w].accessible = false;
+        this.squares[h][w].setColor("white");
+      }
+    }
+  }
+  build() {
+    for (let w = 0; w < this.width; w++) {
+      this.squares[0][w].south = true;
+      this.squares[0][w].east = false;
+      this.squares[0][w].acessible = true;
+    }
+
+    for (let h = 0; h < this.height; h++) {
+      this.squares[h][0].south = false;
+      this.squares[h][0].east = true;
+      this.squares[h][0].accessible = true;
+    }
+
+    this.squares[0][0].east = false;
+
+    let start_w = this.getRandomInt(1, this.width);
+    let start_h = this.getRandomInt(1, this.height);
+
+    this.pipeline = [[start_h, start_w, -100, -100]];
+    this.breakWall();
+
+    this.starth = this.getRandomInt(1, this.height);
+    this.endh = this.getRandomInt(1, this.height);
+
+    this.squares[this.starth][0].east = false;
+    this.squares[this.endh][this.width - 1].east = false;
+  }
+  addRoom(start_h, start_w, parent_h, parent_w) {
+    if (
+      start_h >= 1 &&
+      start_h < this.height &&
+      start_w >= 1 &&
+      start_w < this.width &&
+      !this.squares[start_h][start_w].accessible
+    ) {
+      this.pipeline.push([start_h, start_w, parent_h, parent_w]);
+    }
+  }
+  breakWall() {
+    while (this.pipeline.length > 0) {
+      let [start_h, start_w, parent_h, parent_w] = this.pipeline.pop();
+
+      if (this.squares[start_h][start_w].accessible) {
+        continue;
+      }
+
+      this.squares[start_h][start_w].markAccessible();
+      if (start_h - 1 == parent_h) {
+        this.squares[parent_h][parent_w].openSouth();
+      }
+      if (start_h + 1 == parent_h) {
+        this.squares[start_h][start_w].openSouth();
+      }
+      if (start_w - 1 == parent_w) {
+        this.squares[parent_h][parent_w].openEast();
+      }
+      if (start_w + 1 == parent_w) {
+        this.squares[start_h][start_w].openEast();
+      }
+
+      let nextRooms = [
+        [start_h + 1, start_w],
+        [start_h - 1, start_w],
+        [start_h, start_w + 1],
+        [start_h, start_w - 1]
+      ];
+      let swaps = nextRooms.length;
+      while (swaps > 0) {
+        let i = Math.floor(Math.random() * swaps);
+        swaps--;
+        let t = nextRooms[swaps];
+        nextRooms[swaps] = nextRooms[i];
+        nextRooms[i] = t;
+      }
+
+      for (let pair of nextRooms) {
+        let [a, b] = pair;
+        this.addRoom(a, b, start_h, start_w);
+      }
+    }
+  }
+}
+
+class CanvasView {
+  constructor(canvasID) {
+    this.canvas = document.getElementById(canvasID);
+    this.context = this.canvas.getContext("2d");
+    this.mazeOffset = 10;
+  }
+  setMaze(maze) {
+    this.maze = maze;
+  }
+  getRightEdge() {
+    return this.canvas.width;
+  }
+  getBottomEdge() {
+    return this.canvas.height;
+  }
+  drawBorder() {
+    this.drawBox(0, 0, this.canvas.width, this.canvas.height);
+  }
+  drawBox(a, b, c, d) {
+    this.context.beginPath();
+    this.context.lineWidth = 1;
+    this.context.strokeStyle = "black";
+    this.context.rect(a, b, c, d);
+    this.context.stroke();
+  }
+  drawSpace(a, b, c, d, color) {
+    this.context.beginPath();
+    this.context.fillStyle = color;
+    this.context.rect(a, b, c, d);
+    this.context.fill();
+  }
+  drawSquare(square, h, w) {
+    if (square.south) {
+      this.drawBox(
+        w * this.maze.pixels + this.mazeOffset,
+        (h + 1) * this.maze.pixels + this.mazeOffset,
+        this.maze.pixels,
+        1
+      );
+    }
+    if (square.east) {
+      this.drawBox(
+        (w + 1) * this.maze.pixels + this.mazeOffset,
+        h * this.maze.pixels + this.mazeOffset,
+        1,
+        this.maze.pixels
+      );
+    }
+  }
+  draw() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.drawBorder();
+    for (let h = 0; h < this.maze.height; h++) {
+      for (let w = 0; w < this.maze.width; w++) {
+        this.drawSpace(
+          w * this.maze.pixels + this.mazeOffset,
+          h * this.maze.pixels + this.mazeOffset,
+          this.maze.pixels,
+          this.maze.pixels,
+          this.maze.squares[h][w].color
+        );
+      }
+    }
+    for (let h = 0; h < this.maze.height; h++) {
+      for (let w = 0; w < this.maze.width; w++) {
+        this.drawSquare(this.maze.squares[h][w], h, w);
+      }
+    }
+  }
+}
+
+function generateMaze(height, width, boxsize) {
+  view = new CanvasView("mymaze");
+  maze = new Maze(height, width, boxsize);
+  maze.build();
+  view.setMaze(maze);
+  view.draw();
+}
+
+function solveAnimation() {
+  maze.resetAccessibility();
+  let nexth = [maze.starth];
+  let nextw = [1];
+  
+  interval = setInterval(function () {
+    let h = nexth[nexth.length - 1];
+    let w = nextw[nextw.length - 1];
+    maze.squares[h][w].setColor("lime");
+    maze.squares[h][w].markAccessible();
+    view.draw();
+
+    if (h == maze.endh && w == maze.width - 1) {
+      clearInterval(interval);
+      return;
+    }
+
+    if (
+      h >= 2 &&
+      maze.squares[h - 1][w].south == false &&
+      maze.squares[h - 1][w].accessible == false
+    ) {
+      nexth.push(h - 1);
+      nextw.push(w);
+      return;
+    }
+
+    if (
+      w + 1 < maze.width &&
+      maze.squares[h][w].east == false &&
+      maze.squares[h][w + 1].accessible == false
+    ) {
+      nexth.push(h);
+      nextw.push(w + 1);
+      return;
+    }
+
+    if (
+      h + 1 < maze.height &&
+      maze.squares[h][w].south == false &&
+      maze.squares[h + 1][w].accessible == false
+    ) {
+      nexth.push(h + 1);
+      nextw.push(w);
+      return;
+    }
+
+    if (
+      w >= 2 &&
+      maze.squares[h][w - 1].east == false &&
+      maze.squares[h][w - 1].accessible == false
+    ) {
+      nexth.push(h);
+      nextw.push(w - 1);
+      return;
+    }
+
+    maze.squares[h][w].setColor("pink");
+    nexth.pop();
+    nextw.pop();
+  }, 16);
+}
+
+function letsGo() {
+  let width = parseInt(document.mazedetails.width.value);
+  let height = parseInt(document.mazedetails.height.value);
+  let boxsize = parseInt(document.mazedetails.boxsize.value);
+  let canMakeMaze = true;
+  if (isNaN(width) || width < 2 || width > 40) {
+    canMakeMaze = false;
+    alert("Width is invalid.");
+  }
+  if (isNaN(height) || height < 2 || height > 40) {
+    canMakeMaze = false;
+    alert("Height is invalid.");
+  }
+  if (isNaN(boxsize) || boxsize < 6 || boxsize > 50) {
+    canMakeMaze = false;
+    alert("Box Size is invalid.");
+  }
+  generateMaze(height, width, boxsize);
+}
+
+letsGo();
+        </script>
