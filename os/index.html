@@ -25,6 +25,7 @@
               transform:translate(-50%,0%);
               -ms-transform:translate(-50%,0%);
               border-radius: 30px;">
+    <p id="datetime"></p>
     <a id="myBtn"><img src="https://cdn.bookboard.ga/assets/images/BookBoard.png" width="35px" height="35px"></a>
     <a id="myBtn2"><img src="https://ltunes.gq/assets/Logo.png" width="35px" height="35px"></a>
     <a id="myBtn3"><img src="https://assets.savvas.com//images/slc01/favicon.ico" width="35px" height="35px"></a>
@@ -259,6 +260,10 @@
                   document.body.style.backgroundImage = "url(" + e.target.result + ")";      
                   }     
             }
+</script>
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (("0"+dt.getDate()).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()+1).slice(-2)) +":"+ (("0"+dt.getMinutes()+1).slice(-2));
 </script>
 </head>
 <script>
